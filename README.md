@@ -1,6 +1,5 @@
-
 # PersonalFinanceDashboard  
-A modern and interactive **Personal Finance Tracking Dashboard** built using **Python (Flask)** to help users manage, analyze, and visualize their expenses with ease.
+A modern and interactive **Personal Finance Tracking Dashboard** built using **Python (Flask)** to help users store, manage, and visualize their expenses with ease.
 
 ---
 
@@ -8,47 +7,67 @@ A modern and interactive **Personal Finance Tracking Dashboard** built using **P
   <img src="https://img.shields.io/badge/Category-Finance%20App-blue?style=for-the-badge">
   <img src="https://img.shields.io/badge/Python-3.10+-yellow?style=for-the-badge">
   <img src="https://img.shields.io/badge/Framework-Flask-green?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Database-MySQL-orange?style=for-the-badge">
 </p>
 
 ---
 
 ## 📌 **Project Overview**
 
-PersonalFinanceDashboard is a lightweight yet powerful Flask-based web application designed to help individuals:
+PersonalFinanceDashboard is a lightweight Flask-based web application designed for basic personal expense management.  
 
-- Track daily expenses  
-- Visualize spending with interactive charts  
-- Categorize income & expenses  
-- Improve budgeting decisions  
-- Maintain historical financial records  
+It allows users to:
 
-This project showcases **backend development, web design, database handling, and dashboard creation** — perfect for your GitHub portfolio and resume.
+- Store expense/income records  
+- Track transactions  
+- Categorize spending  
+- View basic dashboard visuals  
+- Manage their daily financial activities  
+
+The project demonstrates **Python development, Flask routing, HTML templates, and MySQL database integration**.
 
 ---
 
 ## 🌟 **Key Features**
 
-### ✔️ Expense & Income Management  
-- Add, edit, delete transactions  
-- Categorize by type (food, bills, travel, shopping, etc.)
+### ✔️ Transaction Management  
+- Add transactions  
+- Edit / delete transactions  
+- Store income & expense type  
+- Add notes / categories  
 
 ### ✔️ Interactive Dashboard  
-- Monthly & yearly analytics  
-- Pie charts, bar charts, spending trends  
+- Category-wise summaries  
+- Monthly spending chart  
 - Income vs Expense comparison  
 
-### ✔️ Clean & Responsive UI  
-- HTML + CSS templates  
-- Mobile-friendly layout  
+### ✔️ MySQL Database (Only for Storage)  
+- Used **only to store and retrieve records**  
+- No complex SQL operations  
+- Simple INSERT, UPDATE, DELETE, SELECT  
 
-### ✔️ SQL Database  
-- SQLite used for persistent storage  
-- Auto-created tables  
+### ✔️ Responsive UI  
+- Clean and simple HTML/CSS interface  
 
-### ✔️ Extensible Codebase  
-- Easy to add more features (authentication, ML insights, exports)
+---
+
+## 🛠️ **Tech Stack**
+
+| Component | Technology |
+|----------|------------|
+| Backend | Python, Flask |
+| Database | **MySQL (for storing data)** |
+| Frontend | HTML, CSS |
+| Charts | Matplotlib / Custom Visualizations |
 
 ---
 
 ## 📁 **Project Structure**
+
+PersonalFinanceDashboard/
+│── app.py # Main Flask backend
+│── README.md # Project documentation
+│── PersonalFinanceDashboard_README.md
+│── templates/ # HTML templates
+│── static/ # CSS, JS, images
+│── pycache/ # Cache files 
