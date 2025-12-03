@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero-section text-center d-flex flex-column justify-content-center align-items-center">
+  <h1 class="display-3 fw-bold text-light">💰 Welcome to Expense Tracker</h1>
+  <p class="lead text-light mt-3">Take control of your money. Track, manage & save smarter!</p>
+  
+  <div class="mt-4">
+    <a href="{{ url_for('login') }}" class="btn btn-lg btn-success shadow-lg mx-2 px-4">🚀 Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn-lg btn-warning shadow-lg mx-2 px-4">📝 Register</a>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="container text-center mt-5">
+  <h2 class="fw-bold">Why Use Expense Tracker?</h2>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card shadow-lg p-3 rounded-4">
+        <h4>📊 Track</h4>
+        <p>Easily monitor your expenses and income in one place.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-lg p-3 rounded-4">
+        <h4>💡 Insights</h4>
+        <p>Get useful insights and charts about your spending habits.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-lg p-3 rounded-4">
+        <h4>🔒 Secure</h4>
+        <p>Your data is safe and accessible only by you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-section {
+    height: 85vh;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 40px;
+  }
+  .hero-section h1 {
+    animation: fadeInDown 1s ease-in-out;
+  }
+  .hero-section p {
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+  .btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+{% endblock %}

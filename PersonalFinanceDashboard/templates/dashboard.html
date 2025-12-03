@@ -1,0 +1,171 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container mt-4">
+
+  <!-- Summary Cards -->
+  <div class="row text-center mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-lg border-0 rounded-4 text-white summary-card"
+           style="background: linear-gradient(135deg, #42a5f5, #478ed1);">
+        <div class="card-body">
+          <h5>💰 Total Income</h5>
+          <h3>₹{{ total_income }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-lg border-0 rounded-4 text-white summary-card"
+           style="background: linear-gradient(135deg, #ef5350, #d32f2f);">
+        <div class="card-body">
+          <h5>🛒 Total Expense</h5>
+          <h3>₹{{ total_expense }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-lg border-0 rounded-4 text-white summary-card"
+           style="background: linear-gradient(135deg, #ffb74d, #fb8c00);">
+        <div class="card-body">
+          <h5>💵 Remaining Balance</h5>
+          <h3>₹{{ remaining_balance }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="row mb-4">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-lg border-0 rounded-4 p-3">
+        <h5 class="text-center">Income vs Expense</h5>
+        <canvas id="barChart" height="300"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-lg border-0 rounded-4 p-2 text-center">
+        <h5 class="text-center">Expense by Category</h5>
+        <!-- ✅ Wrap Pie Chart in small fixed-size box -->
+        <div class="d-flex justify-content-center">
+          <div style="width:350px; height:350px;">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly Trend & Savings -->
+  <div class="row mb-4">
+    <div class="col-12 mb-4">
+      <div class="card shadow-lg border-0 rounded-4 p-3">
+        <h5 class="text-center">Monthly Income & Expense Trend</h5>
+        <canvas id="lineChart" height="350"></canvas>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card shadow-lg border-0 rounded-4 p-3">
+        <h5 class="text-center">Savings / Balance Growth Over Time</h5>
+        <canvas id="balanceChart" height="350"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="card shadow-lg border-0 rounded-4 p-3 mb-4">
+    <h5 class="mb-3">📜 All Transactions</h5>
+    {% for t in transactions %}
+      <div class="card mb-2 border-0 shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <strong>{{ t.date.strftime('%Y-%m-%d') }} - {{ t.type }}</strong>
+          <button class="btn btn-sm btn-outline-dark" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#details{{ t.id }}">
+            Details
+          </button>
+        </div>
+        <div class="collapse" id="details{{ t.id }}">
+          <div class="card-body">
+            <ul class="list-unstyled">
+              {% for cat, amt in t.details.items() %}
+                <li>👉 {{ cat }}: <b>₹{{ amt }}</b></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Income vs Expense Bar Chart
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Income', 'Expense'],
+      datasets: [{
+        label: 'Amount',
+        data: [{{ total_income }}, {{ total_expense }}],
+        backgroundColor: ['#42a5f5', '#ef5350']
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  // Expense by Category Pie Chart (Smaller)
+  new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+      labels: {{ category_expense.keys() | list | safe }},
+      datasets: [{
+        data: {{ category_expense.values() | list | safe }},
+        backgroundColor: ['#42a5f5','#66bb6a','#ffb74d','#ab47bc','#26c6da','#ec407a','#8d6e63']
+      }]
+    },
+    options: { 
+      responsive: true,
+      maintainAspectRatio: false 
+    }
+  });
+
+  // Monthly Income & Expense Trend
+  new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+      labels: {{ months | safe }},
+      datasets: [
+        { label: 'Income', data: {{ monthly_income | safe }}, borderColor: '#42a5f5', fill: false, tension: 0.3 },
+        { label: 'Expense', data: {{ monthly_expense | safe }}, borderColor: '#ef5350', fill: false, tension: 0.3 }
+      ]
+    },
+    options: { responsive: true }
+  });
+
+  // Savings / Balance Growth
+  new Chart(document.getElementById('balanceChart'), {
+    type: 'line',
+    data: {
+      labels: {{ dates_sorted | safe }},
+      datasets: [{
+        label: 'Balance',
+        data: {{ balance_values | safe }},
+        backgroundColor: 'rgba(102,187,106,0.2)',
+        borderColor: '#66bb6a',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: { responsive: true }
+  });
+</script>
+
+<style>
+  .summary-card {
+    transition: transform 0.2s ease-in-out;
+  }
+  .summary-card:hover {
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}
