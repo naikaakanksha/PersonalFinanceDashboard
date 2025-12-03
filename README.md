@@ -70,7 +70,8 @@ PersonalFinanceDashboard/
 ├── PersonalFinanceDashboard_README.md
 │
 ├── templates/
-│   └── (HTML files)
+│   ├── index.html
+│   └── (other HTML files)
 │
 ├── static/
 │   ├── css/
@@ -78,4 +79,6 @@ PersonalFinanceDashboard/
 │   └── images/
 │
 └── __pycache__/
+
+
 
