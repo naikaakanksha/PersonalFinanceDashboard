@@ -62,7 +62,9 @@ The project demonstrates **Python development, Flask routing, HTML templates, an
 
 ---
 
-## 📁 **Project Structure**
+<h2>📁 Project Structure</h2>
+
+<pre>
 PersonalFinanceDashboard/
 │
 ├── app.py
@@ -79,6 +81,7 @@ PersonalFinanceDashboard/
 │   └── images/
 │
 └── __pycache__/
+</pre>
 
 
 
