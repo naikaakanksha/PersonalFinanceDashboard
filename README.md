@@ -63,11 +63,10 @@ The project demonstrates **Python development, Flask routing, HTML templates, an
 ---
 
 ## 📁 **Project Structure**
-
-PersonalFinanceDashboard/
-│── app.py # Main Flask backend
-│── README.md # Project documentation
-│── PersonalFinanceDashboard_README.md
-│── templates/ # HTML templates
-│── static/ # CSS, JS, images
-│── pycache/ # Cache files 
+📦 PersonalFinanceDashboard
+├── 🚀 app.py # Main Flask backend
+├── 📘 README.md # Project documentation
+├── 📄 PersonalFinanceDashboard_README.md # Additional detailed README
+├── 🖼️ templates/ # HTML templates
+├── 🎨 static/ # CSS, JS, images
+└── 🧩 pycache/ # Cache files
